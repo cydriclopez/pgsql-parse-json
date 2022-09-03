@@ -2,7 +2,7 @@
 
 ## Parse JSON in PostgreSQL to save records
 
-> ***This tutorial requires some knowledge in Linux, Docker, Git, Angular, and Go Programming Language.***
+> ***This tutorial requires some knowledge in Linux, Docker, Git, Angular, PostgreSQL, and Go Programming Language.***
 
 Under construction!
 But you can peek into the completed committed source-code.
