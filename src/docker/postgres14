@@ -1,0 +1,18 @@
+#!/bin/bash
+# postgres14
+# Make sure to run:
+# chmod +x postgres14
+# to make this bash script file executable. This script will run the
+# postgres image in detached mode, name it postgres14, and create
+# volume postgres_volume if not existing. This volume provides
+# persistence when the container ceases running. It will also bind
+# mount your project folder as the working folder.
+docker run -d --name=postgres14 -p 5432:5432 \
+--mount source=postgres_volume,target=/var/lib/postgresql/data \
+-v /home/user1/Projects/psql:/home/psql \
+-v /home/user1/Projects/github/pgsql-parse-json/src/pgsql\
+:/home/psql/pgsql-json \
+-w /home/psql \
+-e POSTGRES_PASSWORD="my-postgres-password" postgres
+
+# Run "docker rm postgres14" to remove this container from memory.
