@@ -25,20 +25,20 @@ begin
     -- Loop thru the children json array using type tree_type
     for _record in
         select
-            jpr.key,
-            jpr.parent,
-            jpr.label,
-            jpr.icon,
-            jpr."expandedIcon",
-            jpr."collapsedIcon",
-            jpr.data,
-            jpr.toexpand,
-            jpr.children
+            js.key,
+            js.parent,
+            js.label,
+            js.icon,
+            js."expandedIcon",
+            js."collapsedIcon",
+            js.data,
+            js.toexpand,
+            js.children
 
         -- Read documentation on jsonb_populate_recordset()
         from jsonb_populate_recordset(
             null::tree_type,
-            tree_insert.children) as jpr
+            tree_insert.children) as js
         loop
             -- Check if entry has children
             _leaf = _record.children is null;
