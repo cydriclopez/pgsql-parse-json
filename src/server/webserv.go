@@ -41,6 +41,8 @@ func main() {
 		//*********************************************
 		// Note: here call your app Close() method to
 		// properly close resources before exiting.
+		pgx.Con.Close()
+		log.Println("Postgresql connection closed.")
 		//*********************************************
 
 		os.Exit(0)
