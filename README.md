@@ -48,10 +48,10 @@ Press Ctrl-C to stop server
 <br/>
 
 And finally, into our Postgresql database:
+
 ```
-postgres=#
-postgres=# \i tree_insert_do.sql
-DO
+postgres=# select * from tree_data;
+
  key | parent |     label      |    icon     |   expandedicon    | collapsedicon |          data           | leaf | toexpand
 -----+--------+----------------+-------------+-------------------+---------------+-------------------------+------+----------
    1 |      0 | data           |             |                   |               | data                    | f    | t
