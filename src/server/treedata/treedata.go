@@ -56,7 +56,10 @@ func (t *tData) PostJsonData(w http.ResponseWriter, r *http.Request) {
 
 		// Save json data to db
 		if err = t.saveJsonData(); err != nil {
-			log.Print("Postgresql exec call error:", err.Error())
+			errmsg := "Postgresql exec error:" + err.Error()
+			log.Print(errmsg)
+			jsonResponse(w, http.StatusInternalServerError, errmsg)
+			return
 		}
 
 		jsonResponse(w, http.StatusOK, "Success")
