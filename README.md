@@ -46,6 +46,7 @@ Press Ctrl-C to stop server
 </code>
 <br/>
 <br/>
+
 And finally, into our Postgresql database:
 ```
 postgres=#
