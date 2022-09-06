@@ -19,7 +19,7 @@
 
 We are continuing where we left-off in the previous tutorial [Go POST JSON passthru controller](https://github.com/cydriclopez/go-post-json-passthru).
 
-The added code are: 1.) Postgresql database code, 2.) Go code package ***common*** to connect to Postgresql, and 3.) Alter Go code package ***treedata*** to call the Postgresql stored-function code and pass the client Tree component JSON data.
+The added code are: 1.) Postgresql database code, 2.) Go code package ***common*** to connect to Postgresql, and 3.) alter Go code package ***treedata*** to call the Postgresql stored-function code and pass the client Tree component JSON data.
 
 In this tutorial we do not have new Angular sourcecode in the ***src/client*** folder. Instead what we have is the compiled version, from the previous tutorial [Go POST JSON passthru controller](https://github.com/cydriclopez/go-post-json-passthru), in the ***src/client/dist-static*** folder. I have a ***.gitignore*** rule to block the ***dist*** folder so I had to rename to ***dist-static***.
 
@@ -31,7 +31,7 @@ Our goal is to save our tree component JSON data from our app screen:
 <kbd><img src="images/primeng-tree-demo2.png" width="650"/></kbd>
 <br/>
 
-Into our Go server-side screen console:
+Into our Go pass-thru controller server-side screen console:
 <br/>
 ```bash
 :webserv .
@@ -47,7 +47,7 @@ Press Ctrl-C to stop server
 <br/>
 <br/>
 
-And finally, into our Postgresql database:
+And finally, as records in a table in our Postgresql database:
 
 ```
 postgres=# select * from tree_data;
@@ -79,12 +79,14 @@ postgres=#
 
 ### 3. Prerequisites
 
-Review previous topics
+As mentioned before, this tutorial builds on the previous tutorial [Go POST JSON passthru controller](https://github.com/cydriclopez/go-post-json-passthru). I suggest you go thru them in sequence especially if you are new to Angular and the Go programming language.
+
+I assume that you have a working [Angular](https://github.com/cydriclopez/docker-ng-dev), [PostgreSQL](https://github.com/cydriclopez/docker-pg-dev) and [Go](https://github.com/cydriclopez/go-static-server#3-install-go) installations. Please checkout the previous tutorials that cover these topics.
+
 
 ### 4. Clone this repo
 
-You will have to alter bash script
-pgsql-parse-json/src/docker/postgres14 and rerun it
+
 
 ### 5. Client-side Angular code
 
@@ -101,15 +103,12 @@ user1@penguin:~/Projects/pgsql-parse-json$
 
 ### 6. PostgreSQL database code
 
-Discuss Postgresql code
 
 ### 7. Compile Go server-side code
 
-Discuss Go code
 
 ### 8. Server-side Go code
 
-Compile Go code
 
 ### 9. Conclusion
 
