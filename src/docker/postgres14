@@ -10,7 +10,7 @@
 docker run -d --name=postgres14 -p 5432:5432 \
 --mount source=postgres_volume,target=/var/lib/postgresql/data \
 -v /home/user1/Projects/psql:/home/psql \
--v /home/user1/Projects/github/pgsql-parse-json/src/pgsql\
+-v /home/user1/Projects/pgsql-parse-json/src/pgsql\
 :/home/psql/pgsql-json \
 -w /home/psql \
 -e POSTGRES_PASSWORD="my-postgres-password" postgres
