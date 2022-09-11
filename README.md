@@ -129,16 +129,16 @@ user1@penguin:~/Projects/pgsql-parse-json$
 
 The Go server-side code is simple. We have refactored the previous tutorial's Go code into [4 packages](https://github.com/cydriclopez/pgsql-parse-json/tree/main/src/server).
 
-| package   | file | purpose |
-| ----------- | --- | ----------- |
-| main | [src/server/webserv.go](https://github.com/cydriclopez/pgsql-parse-json/blob/main/src/server/webserv.go) | main ***webserv*** executable  |
-| common | [src/server/common/common.go](https://github.com/cydriclopez/pgsql-parse-json/blob/main/src/server/common/common.go) | Postgresql connector  |
-| params | [src/server/params/params.go](https://github.com/cydriclopez/pgsql-parse-json/blob/main/src/server/params/params.go) | process the command-line args |
-| treedata | [src/server/treedata/treedata.go](https://github.com/cydriclopez/pgsql-parse-json/blob/main/src/server/treedata/treedata.go) | process the tree JSON data |
+| # | package   | file | purpose |
+| --- | ----------- | --- | ----------- |
+| 1 | main | [src/server/webserv.go](https://github.com/cydriclopez/pgsql-parse-json/blob/main/src/server/webserv.go) | main ***webserv*** executable  |
+| 2 | common | [src/server/common/common.go](https://github.com/cydriclopez/pgsql-parse-json/blob/main/src/server/common/common.go) | Postgresql connector  |
+| 3 | params | [src/server/params/params.go](https://github.com/cydriclopez/pgsql-parse-json/blob/main/src/server/params/params.go) | process the command-line args |
+| 4 | treedata | [src/server/treedata/treedata.go](https://github.com/cydriclopez/pgsql-parse-json/blob/main/src/server/treedata/treedata.go) | process the tree JSON data |
 
-#### 6.2. Method saveJsonData() to save data
+#### 6.2. Package treedata method saveJsonData() to save data
 
-We have done some refactoring on this method. Aside from merely printing the JSON data on the console screen, it now calls our Postgresql database stored-function with the statement: ***sql := "select tree_insert($1)"***
+In the package ***treedata*** we have the ***saveJsonData()*** method. We have done some refactoring on this method. Aside from merely printing the JSON data on the console screen, it now calls our Postgresql database stored-function with the statement: ***sql := "select tree_insert($1)"***
 
 Then on next line we call Postgresql with the expression: ***t.Pgx.Con.Exec(t.Pgx.Ctx, sql, t.Jdata.Data)***
 
@@ -352,7 +352,7 @@ postgres=# \df tree*
  public | tree_insert | void             | children jsonb, parent integer DEFAULT 0 | func
 (1 row)
 
-# Test run function tree_insert
+# Test run the just created function tree_insert
 postgres=# \i tree_insert_do.sql
 DO
  key | parent |     label      |    icon     |   expandedicon    | collapsedicon |          data           | leaf | toexpand
