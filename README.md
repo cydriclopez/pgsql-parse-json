@@ -127,7 +127,7 @@ user1@penguin:~/Projects/pgsql-parse-json$
 
 #### 6.1. Go server app in 4 packages
 
-The Go server-side code is simple. We have refactored the previous tutorial's Go code into [4 packages](https://github.com/cydriclopez/pgsql-parse-json/tree/main/src/server).
+The Go server-side code is simple. We have refactored the previous tutorial's Go code into [4 packages](https://github.com/cydriclopez/pgsql-parse-json/tree/main/src/server). We have done just a few refactors: 1.) We added the ***common*** package, and 2.) altered the method ***saveJsonData()*** in package ***treedata***. We have mostly inherited from the Go code in the previous tutorial [Go POST JSON passthru controller](https://github.com/cydriclopez/go-post-json-passthru/tree/main/src/server).
 
 | # | package   | file | purpose |
 | --- | ----------- | --- | ----------- |
