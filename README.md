@@ -250,7 +250,7 @@ $$
 language plpgsql;
 ```
 
-#### 7.3. Running 3 SQL files to load them in Postgresql.
+#### 7.3. Running 4 SQL files to load them in Postgresql.
 
 This tutorial requires that you have followed thru the 2nd tutorial [Dockerize your PostgreSQL dev environment](https://github.com/cydriclopez/docker-pg-dev). It is necessary to setup your development Postgresql environment. You may need to redo the ***postgres14*** container by re-running the bash script [postgres14](https://github.com/cydriclopez/pgsql-parse-json/blob/main/src/docker/postgres14) which is listed below.
 
