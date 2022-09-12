@@ -304,7 +304,7 @@ user1@penguin:~/Projects/pgsql-parse-json$
 postgres14
 
 # Run psql alias to run the container's psql executable.
-# The executable psql brings us inside Postgresql.
+# The executable psql brings us inside postgres14 container.
 # Note the change of prompt to "postgres=#".
 user1@penguin:~/Projects/pgsql-parse-json$
 :psql
