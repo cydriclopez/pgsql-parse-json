@@ -6,7 +6,7 @@
 
 ### Table of Contents
 1. Introduction
-2. Goal
+2. [Goal](https://github.com/cydriclopez/pgsql-parse-json#2-goal)
 3. Prerequisites
 4. Clone this repo
 5. Angular code
