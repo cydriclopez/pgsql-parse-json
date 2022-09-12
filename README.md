@@ -172,7 +172,7 @@ Our Postgresql code consists of 4 SQL files located in folder [src/pgsql](https:
 
 #### 7.2. File tree_insert.sql
 
-The 2nd file ***tree_insert.sql*** is the more interesting Postgresql code of the 4 files. Below is the listing of file file ***tree_insert.sql***. It is straightforward. It merely loops through the ***children*** parameter a JSON array at a time and grabs values to insert into table ***tree_data***. It then recursively calls itself for any non-null child ***children*** member. It uses the type ***tree_type*** when parsing the ***children*** members.
+The 2nd file ***tree_insert.sql*** is the more interesting Postgresql code of the 4 files. Below is the listing of file ***tree_insert.sql***. It is straightforward. It merely loops through the ***children*** parameter a JSON array at a time and grabs values to insert into table ***tree_data***. It then recursively calls itself for any non-null child ***children*** member. It uses the type ***tree_type*** when parsing the ***children*** members.
 
 ```sql
 -- Parse tree json data and save records
