@@ -106,9 +106,6 @@ drwxr-xr-x 1 user1 user1  22 Sep  3 13:06 client
 drwx--x--x 1 user1 user1  58 Sep  3 13:09 docker
 drwxr-xr-x 1 user1 user1 118 Sep  3 12:39 pgsql
 drwxr-xr-x 1 user1 user1  84 Sep  3 13:12 server
-
-user1@penguin:~/Projects/pgsql-parse-json/src$
-:
 ```
 
 ### 5. Angular code
@@ -118,6 +115,7 @@ As already mentioned, in this tutorial we do not have new Angular sourcecode in 
 Further down below we will run our Go server-side app ***webserv*** and pass this Angular compiled folder:
 
 ```bash
+# The dot after the executable webserv passes the current folder
 user1@penguin:~/Projects/pgsql-parse-json$
 :cd src/client/dist-static/primeng-quickstart-cli
 :webserv .
@@ -140,7 +138,7 @@ The Go server-side code is simple. We have refactored the previous tutorial's Go
 
 In the package ***treedata*** we have the ***saveJsonData()*** method. We have done some refactoring on this method. Aside from merely printing the JSON data on the console screen, it now calls our Postgresql database stored-function with the statement: ***sql := "select tree_insert($1)"***
 
-Then on next line we call Postgresql with the expression: ***t.Pgx.Con.Exec(t.Pgx.Ctx, sql, t.Jdata.Data)***
+Then in the next line we call Postgresql with the expression: ***t.Pgx.Con.Exec(t.Pgx.Ctx, sql, t.Jdata.Data)***
 
 ```go
 // Save json data to db
@@ -174,7 +172,7 @@ Our Postgresql code consists of 4 SQL files located in folder [src/pgsql](https:
 
 #### 7.2. File tree_insert.sql
 
-File ***tree_insert.sql*** is the more interesting Postgresql code of the 4 files. Below is the listing. It is quite straightforward. It merely loops through the ***children*** parameter a JSON array at a time. It recursively calls itself for any non-null child ***children*** member. It uses the type ***tree_type*** when parsing the ***children*** members.
+The 2nd file ***tree_insert.sql*** is the more interesting Postgresql code of the 4 files. Below is the listing. It is quite straightforward. It merely loops through the ***children*** parameter a JSON array at a time and grabs values. It recursively calls itself for any non-null child ***children*** member. It uses the type ***tree_type*** when parsing the ***children*** members.
 
 ```sql
 -- Parse tree json data and save records
@@ -252,7 +250,7 @@ language plpgsql;
 
 #### 7.3. Running 4 SQL files to load them in Postgresql.
 
-This tutorial requires that you have followed thru the 2nd tutorial [Dockerize your PostgreSQL dev environment](https://github.com/cydriclopez/docker-pg-dev). It is necessary to setup your development Postgresql environment. You may need to redo the ***postgres14*** container by re-running the bash script [postgres14](https://github.com/cydriclopez/pgsql-parse-json/blob/main/src/docker/postgres14) which is listed below.
+This tutorial requires that you have followed thru the 2nd tutorial [Dockerize your PostgreSQL dev environment](https://github.com/cydriclopez/docker-pg-dev). It is necessary to setup your development Postgresql environment. You may need to redo the ***postgres14*** docker container by re-running the bash script [postgres14](https://github.com/cydriclopez/pgsql-parse-json/blob/main/src/docker/postgres14) which is listed below.
 
 You may need alter the 2nd ***-v*** volume mapping parameter according to your choice folder. Substitute your own path here if necessary. However try maintain the container mapping into the ***:/home/psql/pgsql-json*** folder.
 
@@ -281,13 +279,15 @@ docker run -d --name=postgres14 -p 5432:5432 \
 
 #### 7.4. Make sure your ***~/.bashrc*** has aliases ***pgstart***, ***pgend***, and ***psql*** defined.
 
-In the 2nd tutorial [Dockerize your PostgreSQL dev environment](https://github.com/cydriclopez/docker-pg-dev) there is a part to [Add these 3 aliases in ~/.bashrc](https://github.com/cydriclopez/docker-pg-dev#5-add-these-3-aliases-in-bashrc):
+Towards the end of the 2nd tutorial [Dockerize your PostgreSQL dev environment](https://github.com/cydriclopez/docker-pg-dev) there is a part to [Add these 3 aliases in ~/.bashrc](https://github.com/cydriclopez/docker-pg-dev#5-add-these-3-aliases-in-bashrc):
 
 ```bash
 alias pgstart='docker start postgres14'
 alias pgstop='docker stop postgres14'
 alias psql='docker exec -it postgres14 psql -U postgres'
 ```
+
+With these aliases in your ***~/.bashrc*** file defined, then we can proceed to the next steps.
 
 #### 7.5. Test-run the function tree_insert().
 
@@ -307,8 +307,8 @@ user1@penguin:~/Projects/pgsql-parse-json$
 psql (14.2 (Debian 14.2-1.pgdg110+1))
 Type "help" for help.
 
-# In 7.3. we mapped into the containers pgsql-json folder.
-# So we change into that folder.
+# In 7.3. we mapped into the container's pgsql-json folder.
+# So here we change into that folder.
 postgres=# \cd pgsql-json/
 
 # We list the folders in this pgsql-json folder
@@ -318,7 +318,7 @@ postgres=# \! ls -l
 -rw-r--r-- 1 1000 1000 2355 Sep  4 07:35 tree_insert.sql
 -rw-r--r-- 1 1000 1000  377 Sep  3 20:51 tree_type.sql
 
-# Create table tree_data
+# We run the 1st file to create table tree_data
 postgres=# \i tree_data.sql
 
 # Check to make sure table tree_data exists
@@ -329,7 +329,7 @@ postgres=# \dt tree*
  public | tree_data | table | postgres
 (1 row)
 
-# Create type tree_type
+# We run the 4th file to create type tree_type
 postgres=# \i tree_type.sql
 
 # Check to make sure type tree_type exists
@@ -340,7 +340,7 @@ postgres=# \dT tree*
  public | tree_type |
 (1 row)
 
-# Create function tree_insert
+# We run the 3rd file to create function tree_insert
 postgres=# \i tree_insert.sql
 CREATE FUNCTION
 
@@ -376,12 +376,13 @@ DO
   17 |     16 | Goodfellas     | pi pi-video |                   |               | Goodfellas Movie        | t    | f
   18 |     16 | Untouchables   | pi pi-video |                   |               | Untouchables Movie      | t    | f
 (18 rows)
-
-postgres=#
 ```
 
+At this point our Postgresql database is ready.
 
 ### 8. Running the ***webserv*** app
+
+We now need to compile and then run our ***webserv*** app. The following steps will explain this process.
 
 #### 8.1. Compiling the ***webserv*** app
 
