@@ -356,7 +356,8 @@ postgres=# \df tree*
  public | tree_insert | void             | children jsonb, parent integer DEFAULT 0 | func
 (1 row)
 
-# Test run the just created function tree_insert
+# Test run the just created function tree_insert.
+# The test run lists the contents of table tree_data.
 postgres=# \i tree_insert_do.sql
 DO
  key | parent |     label      |    icon     |   expandedicon    | collapsedicon |          data           | leaf | toexpand
@@ -386,7 +387,7 @@ At this point our Postgresql database is ready.
 
 ### 8. Running the ***webserv*** app
 
-We now need to compile and then run our ***webserv*** app. The following steps will explain this process.
+We just now need to compile and then run our ***webserv*** app. The following steps below will detail this process.
 
 #### 8.1. Compiling the ***webserv*** app
 
