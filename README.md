@@ -303,7 +303,9 @@ user1@penguin:~/Projects/pgsql-parse-json$
 :pgstart
 postgres14
 
-# Run psql alias to run the container's psql executable
+# Run psql alias to run the container's psql executable.
+# The executable psql brings us inside Postgresql.
+# Note the change of prompt to "postgres=#".
 user1@penguin:~/Projects/pgsql-parse-json$
 :psql
 psql (14.2 (Debian 14.2-1.pgdg110+1))
