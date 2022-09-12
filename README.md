@@ -5,15 +5,15 @@
 > ***This tutorial requires some knowledge in Linux, Docker, Git, Angular, PostgreSQL, and Go Programming Language.***
 
 ### Table of Contents
-1. Introduction
+1. [Introduction](https://github.com/cydriclopez/pgsql-parse-json#1-introduction)
 2. [Goal](https://github.com/cydriclopez/pgsql-parse-json#2-goal)
-3. Prerequisites
-4. Clone this repo
-5. Angular code
-6. Go server code
-7. PostgreSQL code
-8. Running the ***webserv*** app
-9. Conclusion
+3. [Prerequisites](https://github.com/cydriclopez/pgsql-parse-json#3-prerequisites)
+4. [Clone this repo](https://github.com/cydriclopez/pgsql-parse-json#4-clone-this-repo)
+5. [Angular code](https://github.com/cydriclopez/pgsql-parse-json#5-angular-code)
+6. [Go server code](https://github.com/cydriclopez/pgsql-parse-json#6-go-server-code)
+7. [PostgreSQL code](https://github.com/cydriclopez/pgsql-parse-json#7-postgresql-code)
+8. [Running the ***webserv*** app](https://github.com/cydriclopez/pgsql-parse-json#8-running-the-webserv-app)
+9. [Conclusion](https://github.com/cydriclopez/pgsql-parse-json#9-conclusion)
 
 ### 1. Introduction
 
