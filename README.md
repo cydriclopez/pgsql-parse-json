@@ -136,7 +136,7 @@ The Go server-side code is simple. We have refactored the previous tutorial's Go
 
 #### 6.2. Package treedata method saveJsonData() to save data
 
-In the package ***treedata*** we have the ***saveJsonData()*** method. We have done some refactoring on this method. Aside from merely printing the JSON data on the console screen, it now calls our Postgresql database stored-function with the statement: ***sql := "select tree_insert($1)"***
+In the package ***treedata*** we have the ***saveJsonData()*** method. We have done some refactoring to this method. Aside from merely printing the JSON data on the console screen, it now calls our Postgresql database stored-function with the statement: ***sql := "select tree_insert($1)"***
 
 Then in the next line we call Postgresql with the expression: ***t.Pgx.Con.Exec(t.Pgx.Ctx, sql, t.Jdata.Data)***
 
@@ -172,7 +172,7 @@ Our Postgresql code consists of 4 SQL files located in folder [src/pgsql](https:
 
 #### 7.2. File tree_insert.sql
 
-The 2nd file ***tree_insert.sql*** is the more interesting Postgresql code of the 4 files. Below is the listing. It is quite straightforward. It merely loops through the ***children*** parameter a JSON array at a time and grabs values. It recursively calls itself for any non-null child ***children*** member. It uses the type ***tree_type*** when parsing the ***children*** members.
+The 2nd file ***tree_insert.sql*** is the more interesting Postgresql code of the 4 files. Below is the listing of file file ***tree_insert.sql***. It is straightforward. It merely loops through the ***children*** parameter a JSON array at a time and grabs values to insert into table ***tree_data***. It then recursively calls itself for any non-null child ***children*** member. It uses the type ***tree_type*** when parsing the ***children*** members.
 
 ```sql
 -- Parse tree json data and save records
@@ -290,6 +290,8 @@ alias psql='docker exec -it postgres14 psql -U postgres'
 With these aliases in your ***~/.bashrc*** file defined, then we can proceed to the next steps.
 
 #### 7.5. Test-run the function tree_insert().
+
+This part has several steps in the listing below. Please carefully follow the cli steps below. Note the character "#" precedes a comment line.
 
 ```bash
 # We change folder into our cloned folder
