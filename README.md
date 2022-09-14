@@ -161,7 +161,7 @@ func (t *tData) saveJsonData() error {
 
 I assume that you have a working [Go installation](https://github.com/cydriclopez/go-static-server#3-install-go). Please checkout the previous tutorial, [Write a Go static file web server](https://github.com/cydriclopez/go-static-server), which covers installing the Go compiler.
 
-This part has several steps in the listing below. Please carefully follow the cli steps below. Note that the ***#*** character precedes a comment line. Also note that in the tutorial [Write a Go static file web server, 3.4. Update your PATH](https://github.com/cydriclopez/go-static-server#34-update-your-path) we updated our PATH to include the folder ***~/go/bin*** where the Go compiler outputs the binary executable from the ***go install*** command.
+This part has several steps in the listing below. Please carefully follow the command line instructions (cli) steps below. Note that the ***#*** character precedes a comment line. Also note that in the tutorial [Write a Go static file web server, 3.4. Update your PATH](https://github.com/cydriclopez/go-static-server#34-update-your-path), we updated our PATH to include the folder ***~/go/bin*** where the Go compiler outputs the binary executable from the ***go install*** compilation command.
 
 ```bash
 # We change folder into our cloned folder
@@ -192,11 +192,13 @@ user1@penguin:~/Projects/github/pgsql-parse-json/src/server$
 # At this point the "webserv" executable will be in "~/go/bin" folder
 user1@penguin:~/Projects/github/pgsql-parse-json/src/server$
 :webserv
-2022/09/13 20:35:48 Database connection error:failed to connect to `host=localhost user=postgres database=postgres`: dial error (dial tcp [::1]:5432: connect: connection refused)
+2022/09/13 20:35:48 Database connection error:failed to
+connect to `host=localhost user=postgres database=postgres`:
+dial error (dial tcp [::1]:5432: connect: connection refused)
 ```
-As shown in the line above, although our server-side ***webserv*** app is ready, our Postgresql database is not running yet. In the next section we will deal with this and get our database up and running.
+As shown in the preceding line above, although our server-side ***webserv*** app is ready, our Postgresql database is not running yet, hence the error message. In the next section we will deal with this and get our database up and running.
 
-Further down, in the section [8. Running the ***webserv*** app](https://github.com/cydriclopez/pgsql-parse-json#8-running-the-webserv-app), we will revisit running the ***webserv*** up again and by that time we will have the database ready.
+Further down below, in the section [8. Running the ***webserv*** app](https://github.com/cydriclopez/pgsql-parse-json#8-running-the-webserv-app), we will retry running the ***webserv*** again and by that time we will have the database ready.
 
 ### 7. PostgreSQL code
 
