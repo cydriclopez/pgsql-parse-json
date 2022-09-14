@@ -157,6 +157,47 @@ func (t *tData) saveJsonData() error {
 }
 ```
 
+#### 6.3. Compile and run Go server code
+
+I assume that you have a working [Go installation](https://github.com/cydriclopez/go-static-server#3-install-go). Please checkout the previous tutorial, [Write a Go static file web server](https://github.com/cydriclopez/go-static-server), which covers installing the Go compiler.
+
+This part has several steps in the listing below. Please carefully follow the cli steps below. Note that the ***#*** character precedes a comment line. Also note that in the tutorial [Write a Go static file web server, 3.4. Update your PATH](https://github.com/cydriclopez/go-static-server#34-update-your-path) we updated our PATH to include the folder ***~/go/bin*** where the Go compiler outputs the binary executable from the ***go install*** command.
+
+```bash
+# We change folder into our cloned folder
+user1@penguin:~$
+:cd Projects/pgsql-parse-json
+
+# In the cloned folder we cd into the Go server folder
+user1@penguin:~/Projects/pgsql-parse-json$
+:cd src/server
+
+# In the Go server folder we list the contents
+user1@penguin:~/Projects/github/pgsql-parse-json/src/server$
+:ll
+
+drwxr-xr-x 1 user1 user1   84 Sep  3 13:12 .
+drwxr-xr-x 1 user1 user1   46 Aug 15 12:41 ..
+drwxr-xr-x 1 user1 user1   18 Sep  1 13:41 common
+drwxr-xr-x 1 user1 user1   18 Aug  2 13:24 params
+drwxr-xr-x 1 user1 user1   22 Jul 31 12:16 treedata
+-rw-r--r-- 1 user1 user1  592 Sep  1 16:45 go.mod
+-rw-r--r-- 1 user1 user1  17K Sep  1 16:45 go.sum
+-rw-r--r-- 1 user1 user1 1.4K Sep  4 00:53 webserv.go
+
+# Here we compile webserv.go and all included packages
+user1@penguin:~/Projects/github/pgsql-parse-json/src/server$
+:go install
+
+# At this point the "webserv" executable will be in "~/go/bin" folder
+user1@penguin:~/Projects/github/pgsql-parse-json/src/server$
+:webserv
+2022/09/13 20:35:48 Database connection error:failed to connect to `host=localhost user=postgres database=postgres`: dial error (dial tcp [::1]:5432: connect: connection refused)
+```
+As shown in the line above, although our server-side ***webserv*** app is ready, our Postgresql database is not running yet. In the next section we will deal with this and get our database up and running.
+
+Further down, in the section [8. Running the ***webserv*** app](https://github.com/cydriclopez/pgsql-parse-json#8-running-the-webserv-app), we will revisit running the ***webserv*** up again and by that time we will have the database ready.
+
 ### 7. PostgreSQL code
 
 #### 7.1. PostgreSQL code in 4 SQL files
