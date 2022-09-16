@@ -142,6 +142,8 @@ In the package ***treedata*** we have the ***saveJsonData()*** method. We have d
 
 Then in the next line we call Postgresql with the expression: ***t.Pgx.Con.Exec(t.Pgx.Ctx, sql, t.Jdata.Data)***
 
+Here is some very important information on [Avoiding SQL injection](https://go.dev/doc/database/sql-injection) risk in our code.
+
 ```go
 // Save json data to db
 func (t *tData) saveJsonData() error {
