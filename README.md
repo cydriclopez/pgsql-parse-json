@@ -538,13 +538,30 @@ postgres=# select * from tree_data;
 postgres=#\q
 
 # Back into our terminal console prompt
-user1@penguin:~/Projects/github/pgsql-parse-json$
+user1@penguin:~/Projects/pgsql-parse-json$
 :
 ```
 
 With the table ***tree_data*** listing above you can try verify the record contents. Check that they correlate with the JSON data in the previous console listing as well as in our tree component state (which node is expanded). Check too for which node are leaves and which are not.
 
 ### 9. Conclusion
+
+Remember that the ***pgstop*** alias stops running the ***postgres14*** docker container. To start Postgresql type ***pgstart***. To connect to Postgresql and run SQL commands type ***psql***.
+
+To exit out of ***webserv*** just press ***ctrl-c***.
+
+Type ***exit*** to end our Linux terminal console session, as shown below.
+
+```bash
+# The pgstop alias stops running the postgres14 docker container
+user1@penguin:~/Projects/pgsql-parse-json$
+:pgstop
+postgres14
+
+# To exit out of Linux terminal console
+user1@penguin:~/Projects/pgsql-parse-json$
+:exit
+```
 
 I hope this tutorial was helpful. This tutorial did try to put into good use your knowledge of Linux, Docker, Git, Angular, PostgreSQL, and Go.
 
