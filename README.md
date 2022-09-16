@@ -358,7 +358,7 @@ Type "help" for help.
 # So here we change into that folder.
 postgres=# \cd pgsql-json/
 
-# We list the folders in this pgsql-json folder
+# We list the files in this pgsql-json folder
 postgres=# \! ls -l
 -rw-r--r-- 1 1000 1000  366 Sep  3 20:50 tree_data.sql
 -rw-r--r-- 1 1000 1000 1790 Sep  5 20:23 tree_insert_do.sql
