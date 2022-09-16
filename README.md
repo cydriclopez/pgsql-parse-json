@@ -35,7 +35,9 @@ Into our Go pass-thru controller server-side screen console:
 <br/>
 ```bash
 :webserv .
-2022/09/05 13:07:59 PostgreSQL 14.2 (Debian 14.2-1.pgdg110+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit
+2022/09/05 13:07:59 PostgreSQL 14.2 (Debian 14.2-1.pgdg110+1)
+on x86_64-pc-linux-gnu, compiled by gcc
+(Debian 10.2.1-6) 10.2.1 20210110, 64-bit
 2022/09/05 13:07:59
 Serving static folder: .
 Listening on port: :3000
@@ -453,7 +455,7 @@ user1@penguin:~/Projects/pgsql-parse-json$
 Or, we can pass the relative path of where the Angular compiled static files folder is located. Either way way is fine.
 
 ```bash
-# While in our cloned project folder we can run ***webserv*** and
+# While in our cloned project folder we can run "webserv" and
 # pass the relative path of where the Angular compiled static
 # files folder is located.
 user1@penguin:~/Projects/pgsql-parse-json$
@@ -482,14 +484,19 @@ In our webapp, with the ***Document*** and ***Pictures*** node expanded, click o
 ```bash
 user1@penguin:~/Projects/pgsql-parse-json$
 :webserv src/client/dist-static/primeng-quickstart-cli/
-2022/09/15 14:32:10 PostgreSQL 14.2 (Debian 14.2-1.pgdg110+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit
+2022/09/15 14:32:10 PostgreSQL 14.2 (Debian 14.2-1.pgdg110+1)
+on x86_64-pc-linux-gnu, compiled by gcc
+(Debian 10.2.1-6) 10.2.1 20210110, 64-bit
 2022/09/15 14:32:10
 Serving static folder: src/client/dist-static/primeng-quickstart-cli/
 Listening on port: :3000
 Press Ctrl-C to stop server
-
-2022/09/15 19:15:38 jsonData: [{"label":"Documents","expandedIcon":"pi pi-folder-open","collapsedIcon":"pi pi-folder","data":"Documents Folder","children":[{"label":"Work","expandedIcon":"pi pi-folder-open","collapsedIcon":"pi pi-folder","data":"Work Folder","children":[{"label":"Expenses.doc","icon":"pi pi-file","data":"Expenses Document"},{"label":"Resume.doc","icon":"pi pi-file","data":"Resume Document"}]},{"label":"Home","expandedIcon":"pi pi-folder-open","collapsedIcon":"pi pi-folder","data":"Home Folder","children":[{"label":"Invoices.txt","icon":"pi pi-file","data":"Invoices for this month"}]}],"toexpand":true},{"label":"Pictures","expandedIcon":"pi pi-folder-open","collapsedIcon":"pi pi-folder","data":"Pictures Folder","children":[{"label":"barcelona.jpg","icon":"pi pi-image","data":"Barcelona Photo"},{"label":"logo.jpg","icon":"pi pi-image","data":"PrimeFaces Logo"},{"label":"primeui.png","icon":"pi pi-image","data":"PrimeUI Logo"}],"toexpand":true},{"label":"Movies","expandedIcon":"pi pi-folder-open","collapsedIcon":"pi pi-folder","data":"Movies Folder","children":[{"label":"Al Pacino","data":"Pacino Movies","children":[{"label":"Scarface","icon":"pi pi-video","data":"Scarface Movie"},{"label":"Serpico","icon":"pi pi-video","data":"Serpico Movie"}]},{"label":"Robert De Niro","data":"De Niro Movies","children":[{"label":"Goodfellas","icon":"pi pi-video","data":"Goodfellas Movie"},{"label":"Untouchables","icon":"pi pi-video","data":"Untouchables Movie"}]}]}]
 ```
+<code>
+2022/09/15 19:15:38 jsonData: [{"label":"Documents","expandedIcon":"pi pi-folder-open","collapsedIcon":"pi pi-folder","data":"Documents Folder","children":[{"label":"Work","expandedIcon":"pi pi-folder-open","collapsedIcon":"pi pi-folder","data":"Work Folder","children":[{"label":"Expenses.doc","icon":"pi pi-file","data":"Expenses Document"},{"label":"Resume.doc","icon":"pi pi-file","data":"Resume Document"}]},{"label":"Home","expandedIcon":"pi pi-folder-open","collapsedIcon":"pi pi-folder","data":"Home Folder","children":[{"label":"Invoices.txt","icon":"pi pi-file","data":"Invoices for this month"}]}],"toexpand":true},{"label":"Pictures","expandedIcon":"pi pi-folder-open","collapsedIcon":"pi pi-folder","data":"Pictures Folder","children":[{"label":"barcelona.jpg","icon":"pi pi-image","data":"Barcelona Photo"},{"label":"logo.jpg","icon":"pi pi-image","data":"PrimeFaces Logo"},{"label":"primeui.png","icon":"pi pi-image","data":"PrimeUI Logo"}],"toexpand":true},{"label":"Movies","expandedIcon":"pi pi-folder-open","collapsedIcon":"pi pi-folder","data":"Movies Folder","children":[{"label":"Al Pacino","data":"Pacino Movies","children":[{"label":"Scarface","icon":"pi pi-video","data":"Scarface Movie"},{"label":"Serpico","icon":"pi pi-video","data":"Serpico Movie"}]},{"label":"Robert De Niro","data":"De Niro Movies","children":[{"label":"Goodfellas","icon":"pi pi-video","data":"Goodfellas Movie"},{"label":"Untouchables","icon":"pi pi-video","data":"Untouchables Movie"}]}]}]
+</code>
+<br/>
+<br/>
 
 #### 8.4. Open another terminal console
 
