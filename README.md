@@ -547,6 +547,8 @@ With the table ***tree_data*** listing above you can try verify the record conte
 
 Remember that the ***pgstop*** alias stops running the ***postgres14*** docker container. To start Postgresql type ***pgstart***. To connect to Postgresql and run SQL commands type ***psql***.
 
+Note that running ***psql*** after ***pgstop*** results in error because Postgresql is not running. We must run ***pgstart*** first before running ***psql***.
+
 To exit out of ***webserv*** just press ***ctrl-c***.
 
 Type ***exit*** to end our Linux terminal console session, as shown below.
@@ -556,6 +558,12 @@ Type ***exit*** to end our Linux terminal console session, as shown below.
 user1@penguin:~/Projects/pgsql-parse-json$
 :pgstop
 postgres14
+
+# Note that running psql after pgstop results in
+# error because Postgresql is not running.
+user1@penguin:~/Projects/pgsql-parse-json$
+:psql
+Error response from daemon: Container 99571c7ec0fb48e416469f918031ed153ab13dea81fae6ff17237ea1c29dfd75 is not running
 
 # To exit out of Linux terminal console
 user1@penguin:~/Projects/pgsql-parse-json$
