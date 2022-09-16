@@ -473,7 +473,6 @@ Press Ctrl-C to stop server
 
 #### 8.2. Running the browser app URL ***localhost:3000***
 
-<br/>
 <kbd><img src="images/primeng-tree-demo2.png" width="650"/></kbd>
 <br/>
 
