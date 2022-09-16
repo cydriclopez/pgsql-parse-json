@@ -295,9 +295,9 @@ language plpgsql;
 
 This tutorial requires that you have followed thru the 2nd tutorial [Dockerize your PostgreSQL dev environment](https://github.com/cydriclopez/docker-pg-dev). It is necessary to setup your development Postgresql environment. You may need to redo the ***postgres14*** docker container by re-running the bash script [postgres14](https://github.com/cydriclopez/pgsql-parse-json/blob/main/src/docker/postgres14) which is listed below.
 
-You may need alter the 2nd ***-v*** volume mapping parameter according to your choice folder. Substitute your own path here if necessary. However try maintain the container mapping into the ***:/home/psql/pgsql-json*** folder.
+You may need to modify the 2nd ***-v*** volume mapping parameter according to your choice folder. Substitute your own path here if necessary. However try maintain the container mapping into the ***:/home/psql/pgsql-json*** folder.
 
-Before re-running the ***postgres14*** script you will have to first delete it with: ***docker rm postgres14***
+Before re-running the ***postgres14*** script you will have to first delete the ***postgres14*** docker container with the command: ***docker rm postgres14***
 
 ```bash
 #!/bin/bash
@@ -334,7 +334,7 @@ With these aliases in your ***~/.bashrc*** file defined, then we can proceed to 
 
 #### 7.5. Test-run the function tree_insert().
 
-This part has several steps in the listing below. Please carefully follow the cli steps below. Note the character "#" precedes a comment line.
+This part has several steps in the listing below. Please carefully follow the command line steps below. Note the character "#" precedes a comment line.
 
 ```bash
 # We change folder into our cloned folder
@@ -424,42 +424,135 @@ DO
   17 |     16 | Goodfellas     | pi pi-video |                   |               | Goodfellas Movie        | t    | f
   18 |     16 | Untouchables   | pi pi-video |                   |               | Untouchables Movie      | t    | f
 (18 rows)
+
+# Exit out of Postgresql
+postgres=# \q
+
+# We are back in our Linux console
+user1@penguin:~/Projects/pgsql-parse-json$
+:
 ```
 
-At this point our Postgresql database is ready.
+From here on you can always start Postgresql by typing ***pgstart***. To stop it you can type ***pgstop***. To connect to Postgresql and run SQL commands like we did above just type ***psql***. These are the aliases in the section [Add these 3 aliases in ~/.bashrc](https://github.com/cydriclopez/docker-pg-dev#5-add-these-3-aliases-in-bashrc) in the previous tutorial.
+
+At this point our Postgresql database is up and ready for our ***webserv*** app.
 
 ### 8. Running the ***webserv*** app
 
-We just now need to compile and then run our ***webserv*** app. The following steps below will detail this process.
+#### 8.1. Run ***webserv*** with the Angular compiled static files folder
 
-#### 8.1. Compiling the ***webserv*** app
-
-```bash
-```
-
-#### 8.2. Running the ***webserv*** app
+We can either ***cd*** into the Angular compiled static files folder,
 
 ```bash
+# The dot after the executable webserv passes the current folder
+user1@penguin:~/Projects/pgsql-parse-json$
+:cd src/client/dist-static/primeng-quickstart-cli
+:webserv .
 ```
 
-#### 8.3. Running the browser app from ***localhost:3000***
+Or, we can pass the relative path of where the Angular compiled static files folder is located. Either way way is fine.
+
+```bash
+# While in our cloned project folder we can run ***webserv*** and
+# pass the relative path of where the Angular compiled static
+# files folder is located.
+user1@penguin:~/Projects/pgsql-parse-json$
+:webserv src/client/dist-static/primeng-quickstart-cli/
+
+2022/09/15 14:17:09 PostgreSQL 14.2 (Debian 14.2-1.pgdg110+1)
+on x86_64-pc-linux-gnu, compiled by
+gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit
+2022/09/15 14:17:09
+Serving static folder: src/client/dist-static/primeng-quickstart-cli/
+Listening on port: :3000
+
+Press Ctrl-C to stop server
+```
+
+#### 8.2. Running the browser app URL ***localhost:3000***
 
 <br/>
 <kbd><img src="images/primeng-tree-demo2.png" width="650"/></kbd>
 <br/>
 
-#### 8.4. Testing our webapp from ***localhost:3000***
+#### 8.3. Testing our webapp tree component generated JSON data
 
+In our webapp, with the ***Document*** and ***Pictures*** node expanded, click on the ***Save*** button. Clicking on the ***Save*** button should list the raw JSON data ***jsonData*** in the console as shown below.
 
 ```bash
+user1@penguin:~/Projects/pgsql-parse-json$
+:webserv src/client/dist-static/primeng-quickstart-cli/
+2022/09/15 14:32:10 PostgreSQL 14.2 (Debian 14.2-1.pgdg110+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit
+2022/09/15 14:32:10
+Serving static folder: src/client/dist-static/primeng-quickstart-cli/
+Listening on port: :3000
+Press Ctrl-C to stop server
+
+2022/09/15 19:15:38 jsonData: [{"label":"Documents","expandedIcon":"pi pi-folder-open","collapsedIcon":"pi pi-folder","data":"Documents Folder","children":[{"label":"Work","expandedIcon":"pi pi-folder-open","collapsedIcon":"pi pi-folder","data":"Work Folder","children":[{"label":"Expenses.doc","icon":"pi pi-file","data":"Expenses Document"},{"label":"Resume.doc","icon":"pi pi-file","data":"Resume Document"}]},{"label":"Home","expandedIcon":"pi pi-folder-open","collapsedIcon":"pi pi-folder","data":"Home Folder","children":[{"label":"Invoices.txt","icon":"pi pi-file","data":"Invoices for this month"}]}],"toexpand":true},{"label":"Pictures","expandedIcon":"pi pi-folder-open","collapsedIcon":"pi pi-folder","data":"Pictures Folder","children":[{"label":"barcelona.jpg","icon":"pi pi-image","data":"Barcelona Photo"},{"label":"logo.jpg","icon":"pi pi-image","data":"PrimeFaces Logo"},{"label":"primeui.png","icon":"pi pi-image","data":"PrimeUI Logo"}],"toexpand":true},{"label":"Movies","expandedIcon":"pi pi-folder-open","collapsedIcon":"pi pi-folder","data":"Movies Folder","children":[{"label":"Al Pacino","data":"Pacino Movies","children":[{"label":"Scarface","icon":"pi pi-video","data":"Scarface Movie"},{"label":"Serpico","icon":"pi pi-video","data":"Serpico Movie"}]},{"label":"Robert De Niro","data":"De Niro Movies","children":[{"label":"Goodfellas","icon":"pi pi-video","data":"Goodfellas Movie"},{"label":"Untouchables","icon":"pi pi-video","data":"Untouchables Movie"}]}]}]
 ```
 
+#### 8.4. Open another terminal console
+
+Open another terminal console. In most Linux terminal software this is done by pressing ***ctrl-t***. With a new console, then follow the command line instructions below.
+
+```bash
+# Alias "psql" should connect us with Postgresql
+user1@penguin:~/Projects/pgsql-parse-json$
+:psql
+
+psql (14.2 (Debian 14.2-1.pgdg110+1))
+Type "help" for help.
+
+# Here we query the table "tree_data" for its contents
+postgres=# select * from tree_data;
+ key | parent |     label      |    icon     |   expandedicon    | collapsedicon |          data           | leaf | toexpand
+-----+--------+----------------+-------------+-------------------+---------------+-------------------------+------+----------
+   1 |      0 | data           |             |                   |               | data                    | f    | t
+   2 |      1 | Documents      |             | pi pi-folder-open | pi pi-folder  | Documents Folder        | f    | t
+   3 |      2 | Work           |             | pi pi-folder-open | pi pi-folder  | Work Folder             | f    | f
+   4 |      3 | Expenses.doc   | pi pi-file  |                   |               | Expenses Document       | t    | f
+   5 |      3 | Resume.doc     | pi pi-file  |                   |               | Resume Document         | t    | f
+   6 |      2 | Home           |             | pi pi-folder-open | pi pi-folder  | Home Folder             | f    | f
+   7 |      6 | Invoices.txt   | pi pi-file  |                   |               | Invoices for this month | t    | f
+   8 |      1 | Pictures       |             | pi pi-folder-open | pi pi-folder  | Pictures Folder         | f    | t
+   9 |      8 | barcelona.jpg  | pi pi-image |                   |               | Barcelona Photo         | t    | f
+  10 |      8 | logo.jpg       | pi pi-image |                   |               | PrimeFaces Logo         | t    | f
+  11 |      8 | primeui.png    | pi pi-image |                   |               | PrimeUI Logo            | t    | f
+  12 |      1 | Movies         |             | pi pi-folder-open | pi pi-folder  | Movies Folder           | f    | f
+  13 |     12 | Al Pacino      |             |                   |               | Pacino Movies           | f    | f
+  14 |     13 | Scarface       | pi pi-video |                   |               | Scarface Movie          | t    | f
+  15 |     13 | Serpico        | pi pi-video |                   |               | Serpico Movie           | t    | f
+  16 |     12 | Robert De Niro |             |                   |               | De Niro Movies          | f    | f
+  17 |     16 | Goodfellas     | pi pi-video |                   |               | Goodfellas Movie        | t    | f
+  18 |     16 | Untouchables   | pi pi-video |                   |               | Untouchables Movie      | t    | f
+(18 rows)
+
+# To exit out of Postgresql
+postgres=#\q
+
+# Back into our terminal console prompt
+user1@penguin:~/Projects/github/pgsql-parse-json$
+:
+```
+
+With the table ***tree_data*** listing above you can try verify the record contents. Check that they correlate with the JSON data in the previous console listing as well as in our tree component state (which node is expanded). Check too for which node are leaves and which are not.
 
 ### 9. Conclusion
 
+I hope this tutorial was helpful. This tutorial did try to put into good use your knowledge of Linux, Docker, Git, Angular, PostgreSQL, and Go.
 
-Under construction!
-But you can peek into the completed committed source-code.
-Happy coding! 😊
+In this tutorial we have covered the following. You can review carefully the individual sections for more clarity.
+
+1. [Introduction](https://github.com/cydriclopez/pgsql-parse-json#1-introduction)
+2. [Goal](https://github.com/cydriclopez/pgsql-parse-json#2-goal)
+3. [Prerequisites](https://github.com/cydriclopez/pgsql-parse-json#3-prerequisites)
+4. [Clone this repo](https://github.com/cydriclopez/pgsql-parse-json#4-clone-this-repo)
+5. [Angular code](https://github.com/cydriclopez/pgsql-parse-json#5-angular-code)
+6. [Go server code](https://github.com/cydriclopez/pgsql-parse-json#6-go-server-code)
+7. [PostgreSQL code](https://github.com/cydriclopez/pgsql-parse-json#7-postgresql-code)
+8. [Running the ***webserv*** app](https://github.com/cydriclopez/pgsql-parse-json#8-running-the-webserv-app)
+9. [Conclusion](https://github.com/cydriclopez/pgsql-parse-json#9-conclusion)
+
+Good luck and happy coding! 😊
 
 ---
