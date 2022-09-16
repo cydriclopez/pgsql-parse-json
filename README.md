@@ -559,8 +559,8 @@ user1@penguin:~/Projects/pgsql-parse-json$
 :pgstop
 postgres14
 
-# Note that running psql after pgstop results in
-# error because Postgresql is not running.
+# Note that running psql after pgstop results in error
+# because the postgres14 docker container is not running.
 user1@penguin:~/Projects/pgsql-parse-json$
 :psql
 Error response from daemon: Container 99571c7ec0fb48e416469f918031ed153ab13dea81fae6ff17237ea1c29dfd75 is not running
